@@ -29,9 +29,22 @@ public class MovieController {
 	private MovieToMovieDto toMovieDto;
 	
 	@GetMapping
-	public ResponseEntity<List<MovieDTO>> getAll(@RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo){
+	public ResponseEntity<List<MovieDTO>> getAll(@RequestParam(required = false) String name,
+												@RequestParam(required = false) String genres,
+												@RequestParam(required = false) Integer durationFrom,
+												@RequestParam(required = false) Integer durationTo,
+												@RequestParam(required = false) String distributor,
+												@RequestParam(required = false) String countryOfOrigin,
+												@RequestParam(required = false) Integer yearOfProductionFrom,
+												@RequestParam(required = false)	Integer yearOfProductionTo,
+												@RequestParam(value = "pageNo", defaultValue = "0") Integer pageNo){
 		Page<Movie> page;
-		page = movieService.findAll(pageNo);
+		try {
+			page = movieService.search(name, genres, durationFrom, durationTo, distributor, countryOfOrigin, yearOfProductionFrom, yearOfProductionTo, pageNo);
+		} catch (Exception e) {
+			page = movieService.findAll(pageNo);
+		}
+		
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Total-Pages", Integer.toString(page.getTotalPages()));

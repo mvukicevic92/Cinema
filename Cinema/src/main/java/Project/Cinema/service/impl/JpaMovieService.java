@@ -53,4 +53,37 @@ public class JpaMovieService implements MovieService{
 		return null;
 	}
 
+	@Override
+	public Page<Movie> search(String name, String genres, Integer durationFrom, Integer durationTo, String distributor,
+			String countryOfOrigin, Integer yearOfProductionFrom, Integer yearOfProductionTo, Integer pageNo) {
+		if(name == null) {
+			name = "";
+		}
+		if(genres == null) {
+			genres = "";
+		}
+		if(durationFrom == null) {
+			durationFrom = 0;
+		}
+		if(durationTo == null) {
+			durationTo = Integer.MAX_VALUE;
+		}
+		if(distributor == null) {
+			distributor = "";
+		}
+		if(countryOfOrigin == null) {
+			countryOfOrigin = "";
+		}
+		if(yearOfProductionFrom == null) {
+			yearOfProductionFrom = 0;
+		}
+		if(yearOfProductionTo == null) {
+			yearOfProductionTo = Integer.MAX_VALUE;
+		}
+		
+		return movieRepository.findByNameIgnoreCaseContainsAndGenresIgnoreCaseContainsAndDurationBetweenAndDistributorIgnoreCaseContainsAndCountryOfOriginIgnoreCaseContainsAndYearOfProductionBetween(
+				name, genres, durationFrom, durationTo, distributor, countryOfOrigin, yearOfProductionFrom, yearOfProductionTo, PageRequest.of(pageNo, 5));
+	}
+
+
 }
