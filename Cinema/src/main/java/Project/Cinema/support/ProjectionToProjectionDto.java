@@ -18,12 +18,16 @@ public class ProjectionToProjectionDto implements Converter<Projection, Projecti
 	
 	@Autowired
 	private HallToHallDto toHallDto;
+	
+	@Autowired
+	private TypeOfProjectionToTypeOfProjectionDto toTypeOfProjectionDto;
 
 	@Override
 	public ProjectionDTO convert(Projection projection) {
 		ProjectionDTO projectionDto = new ProjectionDTO();
 		projectionDto.setId(projection.getId());
 		projectionDto.setMovie(toMovieDto.convert(projection.getMovie()));
+		projectionDto.setTypeOfProjection(toTypeOfProjectionDto.convert(projection.getTypeOfProjection()));
 		projectionDto.setHall(toHallDto.convert(projection.getHall()));
 		projectionDto.setDateTimeOfDisplay(projection.getDateTimeOfDisplay().toString());
 		projectionDto.setTicketPrice(projection.getTicketPrice());

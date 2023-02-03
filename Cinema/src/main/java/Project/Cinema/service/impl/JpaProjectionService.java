@@ -1,7 +1,6 @@
 package Project.Cinema.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,12 +44,23 @@ public class JpaProjectionService implements ProjectionService{
 
 	@Override
 	public Projection delete(Long id) {
-		Optional<Projection> projection = projectionRepository.findById(id);
-		if(projection.isPresent()) {
-			projectionRepository.deleteById(id);
-			return projection.get();
+		Projection projection = findOne(id);
+		if(projection != null) {
+			projection.getMovie().getProjections().remove(projection);
+			projection.setMovie(null);
+			projection.getHall().getProjections().remove(projection);
+			projection.setHall(null);
+//			projection.setTypeOfProjection(null);			
+			projection = projectionRepository.save(projection);
+			projectionRepository.delete(projection);
+			return projection;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Projection> findByMovieId(Long movieId) {
+		return projectionRepository.findAll();
 	}
 
 }

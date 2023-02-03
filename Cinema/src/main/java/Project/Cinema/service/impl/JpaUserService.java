@@ -8,7 +8,7 @@ import javax.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import Project.Cinema.enumeration.UserRole;
@@ -22,6 +22,9 @@ public class JpaUserService implements UserService{
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public Optional<User> findOne(Long id) {
@@ -61,11 +64,15 @@ public class JpaUserService implements UserService{
 			throw new EntityNotFoundException();
 		}
 		User user = result.get();
-		boolean passwordsMatch = BCrypt.checkpw(userChangePasswordDto.getOldPassword(), user.getPassword());
-		if(!user.getUsername().equals(userChangePasswordDto.getUsername()) || !passwordsMatch) {
+	
+		if(!user.getUsername().equals(userChangePasswordDto.getUsername()) || !user.getPassword().equals(userChangePasswordDto.getPassword())) {
 			return false;
 		}
-		user.setPassword(userChangePasswordDto.getPassword());
+		String password = userChangePasswordDto.getPassword();
+		if(!userChangePasswordDto.getPassword().equals("")) {
+			password = passwordEncoder.encode(userChangePasswordDto.getPassword());
+		}
+		user.setPassword(password);
 		userRepository.save(user);
 		return true;
 	}

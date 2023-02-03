@@ -4,10 +4,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +22,12 @@ public class Hall {
 	@Column(nullable = false)
 	private String name;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany
 	@JoinColumn(name = "type_of_projection_id")
 	private Set<TypeOfProjection> typesOfProjections = new HashSet<>();
+	
+	@OneToMany(mappedBy = "hall")
+	private Set<Projection> projections = new HashSet<>();
 
 	public Hall() {
 		super();
@@ -59,6 +60,14 @@ public class Hall {
 
 	public void setTypesOfProjections(Set<TypeOfProjection> typesOfProjections) {
 		this.typesOfProjections = typesOfProjections;
+	}
+	
+	public Set<Projection> getProjections() {
+		return projections;
+	}
+
+	public void setProjections(Set<Projection> projections) {
+		this.projections = projections;
 	}
 
 	@Override

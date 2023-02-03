@@ -62,11 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.and()
 				.csrf().disable()
 				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+				.and().authorizeRequests().anyRequest().permitAll();
 				/*.and()
 				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/korisnici/auth")
-					.permitAll()
+				.antMatchers(HttpMethod.POST, "/api/users/auth")
+					.permitAll();
 				 .antMatchers(HttpMethod.DELETE, "/api/filmovi")
 					 .hasAnyAuthority("ADMIN", "USER")
 				.anyRequest().authenticated();*/

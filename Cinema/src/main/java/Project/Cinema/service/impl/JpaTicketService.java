@@ -1,14 +1,15 @@
 package Project.Cinema.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import Project.Cinema.model.Projection;
 import Project.Cinema.model.Ticket;
+import Project.Cinema.repository.ProjectionRepository;
 import Project.Cinema.repository.TicketRepository;
 import Project.Cinema.service.TicketService;
 
@@ -17,6 +18,9 @@ public class JpaTicketService implements TicketService{
 	
 	@Autowired
 	private TicketRepository ticketRepository;
+	
+	@Autowired
+	private ProjectionRepository projectionRepository;
 
 	@Override
 	public Ticket findOne(Long id) {
@@ -45,12 +49,20 @@ public class JpaTicketService implements TicketService{
 
 	@Override
 	public Ticket delete(Long id) {
-		Optional<Ticket> ticket = ticketRepository.findById(id);
-		if(ticket.isPresent()) {
+		Ticket ticket = ticketRepository.findOneById(id);
+		if(ticket != null) {
+			Projection projection = ticket.getProjection();
+			projectionRepository.delete(projection);	
+			ticketRepository.save(ticket);
 			ticketRepository.deleteById(id);
-			return ticket.get();
+			return ticket;
 		}
 		return null;
+	}
+
+	@Override
+	public List<Ticket> findByProjectionId(Long projectionId) {
+		return ticketRepository.findByProjectionId(projectionId);
 	}
 
 }

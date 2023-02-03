@@ -14,5 +14,5 @@ public interface TicketService {
 	Ticket save(Ticket ticket);
 	Ticket update(Ticket ticket);
 	Ticket delete(Long id);
-
+	List<Ticket> findByProjectionId(Long projectionId);
 }

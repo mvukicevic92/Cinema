@@ -12,6 +12,7 @@ import Project.Cinema.model.Projection;
 import Project.Cinema.service.HallService;
 import Project.Cinema.service.MovieService;
 import Project.Cinema.service.ProjectionService;
+import Project.Cinema.service.TypeOfProjectionService;
 import Project.Cinema.web.dto.ProjectionDTO;
 
 @Component
@@ -22,6 +23,9 @@ public class ProjectionDtoToProjection implements Converter<ProjectionDTO, Proje
 	
 	@Autowired
 	private MovieService movieService;
+	
+	@Autowired
+	private TypeOfProjectionService typeOfProjectionService;
 	
 	@Autowired
 	private HallService hallService;
@@ -36,6 +40,7 @@ public class ProjectionDtoToProjection implements Converter<ProjectionDTO, Proje
 		}
 		if(projection != null) {
 			projection.setMovie(movieService.findOne(projectionDto.getMovie().getId()));
+			projection.setTypeOfProjection(typeOfProjectionService.findOne(projectionDto.getTypeOfProjection().getId()));
 			projection.setHall(hallService.findOne(projectionDto.getHall().getId()));
 			projection.setDateTimeOfDisplay(getLocalDateTime(projectionDto.getDateTimeOfDisplay()));
 			projection.setTicketPrice(projectionDto.getTicketPrice());

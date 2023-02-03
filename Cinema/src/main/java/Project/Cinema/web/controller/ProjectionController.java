@@ -8,7 +8,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +39,17 @@ public class ProjectionController {
 		headers.add("Total-Pages", Integer.toString(page.getTotalPages()));
 		
 		return new ResponseEntity<>(toProjectionDto.convert(page.getContent()), headers, HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<ProjectionDTO> delete (@PathVariable Long id){
+		Projection deletedProjection = projectionService.delete(id);
+		
+		if(deletedProjection == null) {
+			return new ResponseEntity<>(toProjectionDto.convert(deletedProjection) , HttpStatus.NO_CONTENT);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 }

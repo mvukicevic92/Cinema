@@ -1,12 +1,17 @@
 package Project.Cinema.model;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Movie {
@@ -41,6 +46,9 @@ public class Movie {
 	
 	@Column(length = 500)
 	private String description;
+	
+	@OneToMany(mappedBy = "movie", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Projection> projections = new HashSet<>();
 
 	public Movie() {
 		super();
@@ -147,6 +155,14 @@ public class Movie {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Set<Projection> getProjections() {
+		return projections;
+	}
+
+	public void setProjections(Set<Projection> projections) {
+		this.projections = projections;
 	}
 
 	@Override

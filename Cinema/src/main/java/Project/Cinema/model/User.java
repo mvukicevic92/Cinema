@@ -20,10 +20,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	@Column(unique = true, nullable = false)
 	private String username;
 	
-	@Column
+	@Column(nullable = false)
 	private String password;
 	
 	@Column
@@ -98,7 +98,12 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(id, other.id);
+		if(id == null) {
+			if(other.id != null)
+				return false;
+		}else if(!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,13 +61,19 @@ public class UserController {
 	@Autowired
 	private TokenUtils tokenUtils;
 	
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+	
 	@PostMapping
 	public ResponseEntity<UserDTO> create(@RequestBody @Validated UserRegistrationDto dto){
 		if(dto.getId() != null || !dto.getPassword().equals(dto.getRepeatedPassword())) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		User user = toUser.convert(dto);
-		user.setPassword(dto.getPassword());
+		
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        user.setPassword(encodedPassword);
+        
 		return new ResponseEntity<>(toUserDto.convert(userService.save(user)), HttpStatus.CREATED);
 	}
 	
@@ -104,6 +112,7 @@ public class UserController {
 		}
 	}
 	
+	@PreAuthorize("permitAll()")
 	@RequestMapping(path = "/auth", method = RequestMethod.POST)
 	public ResponseEntity authenticateUser(@RequestBody AuthUserDto dto) {
 		UsernamePasswordAuthenticationToken authenticationToken = 

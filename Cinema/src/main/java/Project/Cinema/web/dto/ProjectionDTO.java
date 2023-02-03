@@ -9,6 +9,8 @@ public class ProjectionDTO {
 
 	private MovieDTO movie;
 	
+	private TypeOfProjectionDTO typeOfProjection;
+	
 	private HallDTO hall;
 	
 	private String dateTimeOfDisplay;
@@ -34,6 +36,14 @@ public class ProjectionDTO {
 
 	public void setMovie(MovieDTO movie) {
 		this.movie = movie;
+	}
+
+	public TypeOfProjectionDTO getTypeOfProjection() {
+		return typeOfProjection;
+	}
+
+	public void setTypeOfProjection(TypeOfProjectionDTO typeOfProjection) {
+		this.typeOfProjection = typeOfProjection;
 	}
 
 	public HallDTO getHall() {

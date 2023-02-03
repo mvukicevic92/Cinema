@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import Project.Cinema.model.Movie;
@@ -29,8 +31,8 @@ public class JpaMovieService implements MovieService{
 	}
 
 	@Override
-	public Page<Movie> findAll(Integer pageNo) {
-		return movieRepository.findAll(PageRequest.of(pageNo, 5));
+	public Page<Movie> findAll(Pageable pageable) {
+		return movieRepository.findAll(PageRequest.of(0, 5, Sort.by("name").ascending().and(Sort.by("name").descending())));
 	}
 
 	@Override
@@ -42,7 +44,7 @@ public class JpaMovieService implements MovieService{
 	public Movie update(Movie movie) {
 		return movieRepository.save(movie);
 	}
-
+	
 	@Override
 	public Movie delete(Long id) {
 		Optional<Movie> movie = movieRepository.findById(id);
@@ -85,5 +87,16 @@ public class JpaMovieService implements MovieService{
 				name, genres, durationFrom, durationTo, distributor, countryOfOrigin, yearOfProductionFrom, yearOfProductionTo, PageRequest.of(pageNo, 5));
 	}
 
+	@Override
+	public Movie buyTicket(Long id) {
+//		Movie movie = movieRepository.findOneById(id);
+//		Ticket ticket = new Ticket();
+//		ticket.setDateTimeOfPurchase(LocalDateTime.now());
+//		Projection projection = projectionRepository.findOne(movie.getProjections());
+//		if(projection.getDateTimeOfDisplay().isAfter(LocalDateTime.now())) {
+//			
+//		}
+		return null;
+	}
 
 }

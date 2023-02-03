@@ -1,8 +1,6 @@
 package Project.Cinema.support;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -28,13 +26,13 @@ public class UserDtoToUser implements Converter<UserDTO, User>{
 			user = new User();
 		}
 		user.setUsername(userDto.getUsername());
-		user.setDateOfRegistration(getLocalDate(userDto.getDateOfRegistration()));
+		user.setDateOfRegistration(LocalDate.now());
 		return user;
 	}
 	
-    private LocalDate getLocalDate(String date) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return LocalDate.parse(date, formatter);
-    }
+//    private LocalDate getLocalDate(String date) throws DateTimeParseException {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        return LocalDate.parse(date, formatter);
+//    }
 
 }

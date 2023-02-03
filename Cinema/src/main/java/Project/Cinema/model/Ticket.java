@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 public class Ticket {
 	
@@ -20,6 +23,9 @@ public class Ticket {
 	private Long id;
 	
 	@ManyToOne
+//	@JoinColumn(name = "projection_id")
+//	@PrimaryKeyJoinColumn
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Projection projection;
 	
 	@OneToOne

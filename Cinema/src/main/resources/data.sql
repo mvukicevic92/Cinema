@@ -1,5 +1,5 @@
-INSERT INTO user (id, username, password, date_of_registration, role) VALUES (1,"Milan","milan123","2023-01-21",'ADMIN');
-INSERT INTO user (id, username, password, date_of_registration, role) VALUES (2,"Pera","pera123","2023-01-31",'USER');
+INSERT INTO user (id, username, password, date_of_registration, role) VALUES (1,"milan","$2y$12$NH2KM2BJaBl.ik90Z1YqAOjoPgSd0ns/bF.7WedMxZ54OhWQNNnh6","2023-01-21",'ADMIN'); -- sifra je miroslav
+INSERT INTO user (id, username, password, date_of_registration, role) VALUES (2,"petar","$2y$12$i6/mU4w0HhG8RQRXHjNCa.tG2OwGSVXb0GYUnf8MZUdeadE4voHbC","2023-01-31",'USER'); -- sifra je verovatno pera ili petar
 
 INSERT INTO type_of_projection (id, name) VALUES (1, "2D");
 INSERT INTO type_of_projection (id, name) VALUES (2, "3D");
@@ -25,19 +25,19 @@ INSERT INTO movie (id, name, director, actors, genres, duration, distributor, co
 INSERT INTO movie (id, name, director, actors, genres, duration, distributor, country_of_origin, year_of_production, description) VALUES (6, "Asteriks i Obeliks: Srednje kraljevstvo", "Guillaume Canet", "Guillaume Canet, Gilles Lellouche, Vincent Cassel", "Avantura, Porodicni", 111, "Tresor Films", "Francuska", 2022, "Uz pomoć Finaltesisa, feničanskog trgovca i njenog vernog telohranitelja Mai Vei, jedina ćerka carice, princeza Sas-Ji beži u Galiju da zatraži pomoć od dva hrabra ratnika Asteriksa i Obeliksa, koji su obdareni nadljudskom snagom zahvaljujući svom magičnom napitku.");
 INSERT INTO movie (id, name, director, actors, genres, duration, distributor, country_of_origin, year_of_production, description) VALUES (7, "Kikoriki: Vec vidjeno", "Denis Chernov", "Nemanja Zivkovic, Predrag Damnjanovic, Braniislav Platisa", "Animirani", 85, "Petersburg Animation Studio", "Rusija", 2018, "Neodoljiva Kikoriki družina vraća nam se u novoj, nezaboravnoj porodičnoj avanturi “Kikoriki: Već viđeno”. Kraš odlučuje da svom najboljem prijatelju Bariju priredi nezaboravnu rođendansku zabavu.");
 
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (1, 1, 1, "2023-02-01 20:30:00", 350.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (2, 2, 2, "2023-02-01 21:00:00", 420.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (3, 1, 5, "2023-02-02 17:00:00", 380.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (4, 4, 3, "2023-02-02 22:00:00", 4000.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (5, 3, 4, "2023-02-05 15:00:00", 330.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (6, 5, 4, "2023-02-02 21:00:00", 450.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (7, 3, 3, "2023-02-02 10:00:00", 350.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (8, 7, 1, "2023-02-03 15:00:00", 420.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (9, 5, 2, "2023-02-03 20:30:00", 390.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (10, 7, 5, "2023-02-04 11:15:00", 380.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (11, 6, 5, "2023-02-02 21:00:00", 330.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (12, 3, 4, "2023-02-01 21:15:00", 450.00);
-INSERT INTO projection (id, movie_id, hall_id, date_time_of_display, ticket_price) VALUES (13, 4, 3, "2023-02-05 21:30:00", 420.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (1, 1, 1, 1, "2023-02-01 20:30:00", 350.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (2, 2, 2, 2, "2023-02-01 21:00:00", 420.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (3, 1, 3, 5, "2023-02-02 17:00:00", 380.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (4, 4, 3, 3, "2023-02-02 22:00:00", 400.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (5, 3, 1, 4, "2023-02-05 15:00:00", 330.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (6, 5, 1, 4, "2023-02-02 21:00:00", 450.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (7, 3, 3, 3, "2023-02-02 10:00:00", 350.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (8, 7, 2, 1, "2023-02-03 15:00:00", 420.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (9, 5, 2, 2, "2023-02-03 20:30:00", 390.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (10, 7, 2, 5, "2023-02-04 11:15:00", 380.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (11, 6, 3, 5, "2023-02-02 21:00:00", 330.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (12, 3, 1, 4, "2023-02-01 21:15:00", 450.00);
+INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (13, 4, 1, 3, "2023-02-05 21:30:00", 420.00);
 
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (1, 1, 1, "2023-02-01");
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (2, 3, 2, "2023-02-02");

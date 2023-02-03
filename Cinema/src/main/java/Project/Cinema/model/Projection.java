@@ -1,20 +1,15 @@
 package Project.Cinema.model;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
 public class Projection {
@@ -22,13 +17,14 @@ public class Projection {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	 
 	@ManyToOne
 	private Movie movie;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "type_of_projection_id")
-	private Set<TypeOfProjection> typesOfProjection = new HashSet<>();
+	@ManyToOne
+//	@JoinColumn(name = "type_of_projection_id")
+	@PrimaryKeyJoinColumn
+	private TypeOfProjection typeOfProjection;
 	
 	@ManyToOne
 	private Hall hall;
@@ -38,14 +34,18 @@ public class Projection {
 	
 	@Column(nullable = false)
 	private Double ticketPrice;
+	
+//	private User user;
 
 	public Projection() {
 		super();
 	}
 
-	public Projection(Movie movie, Hall hall, LocalDateTime dateTimeOfDisplay, Double ticketPrice) {
+	public Projection(Movie movie, TypeOfProjection typeOfProjection, Hall hall, LocalDateTime dateTimeOfDisplay,
+			Double ticketPrice) {
 		super();
 		this.movie = movie;
+		this.typeOfProjection = typeOfProjection;
 		this.hall = hall;
 		this.dateTimeOfDisplay = dateTimeOfDisplay;
 		this.ticketPrice = ticketPrice;
@@ -65,14 +65,17 @@ public class Projection {
 
 	public void setMovie(Movie movie) {
 		this.movie = movie;
+		if(movie != null & !movie.getProjections().contains(this)) {
+			movie.getProjections().add(this);
+		}
 	}
 
-	public Set<TypeOfProjection> getTypesOfProjection() {
-		return typesOfProjection;
+	public TypeOfProjection getTypeOfProjection() {
+		return typeOfProjection;
 	}
 
-	public void setTypesOfProjection(Set<TypeOfProjection> typesOfProjection) {
-		this.typesOfProjection = typesOfProjection;
+	public void setTypeOfProjection(TypeOfProjection typeOfProjection) {
+		this.typeOfProjection = typeOfProjection;
 	}
 
 	public Hall getHall() {
@@ -81,6 +84,9 @@ public class Projection {
 
 	public void setHall(Hall hall) {
 		this.hall = hall;
+		if(hall != null & !hall.getProjections().contains(this)) {
+			hall.getProjections().add(this);
+		}
 	}
 
 	public LocalDateTime getDateTimeOfDisplay() {
@@ -118,8 +124,10 @@ public class Projection {
 
 	@Override
 	public String toString() {
-		return "Projection [id=" + id + ", movie=" + movie.getName() + ", hall=" + hall.getName() + ", dateTimeOfDisplay="
-				+ dateTimeOfDisplay + ", ticketPrice=" + ticketPrice + "]";
+		return "Projection [id=" + id + ", movie=" + movie.getName() + ", typeOfProjection=" + typeOfProjection.getName() + ", hall=" + hall.getName()
+				+ ", dateTimeOfDisplay=" + dateTimeOfDisplay + ", ticketPrice=" + ticketPrice + "]";
 	}
+
+	
 	
 }

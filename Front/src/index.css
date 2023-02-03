@@ -1,0 +1,108 @@
+table {
+    border: 3px solid rgb(9, 222, 250);
+    width: 50%;
+
+    text-align: center;
+}
+
+h1 {
+  color: rgb(12, 227, 255);
+  text-align: center;
+  font-style: italic;
+  font-size: 100px;
+  opacity: 100%;
+}
+
+p1 {
+  color: #0575E6;
+  text-align: center;
+  font-style: italic;
+  font-size: 60px;
+  opacity: 100%;
+}
+
+p2 {
+  color: #ffffff;
+  text-align: center;
+  font-style: normal;
+  font-size: large;
+  opacity: 100%;
+}
+p3 {
+  color: #ffffff;
+  text-align: center;
+  font-style: normal;
+  font-size: xx-large;
+  opacity: 100%;
+}
+
+.button {
+  background-color: #050505; 
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px
+}
+
+
+.button-navy { background-color: rgb(3, 3, 252); } 
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(28, 157, 243);
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: rgb(132, 221, 248);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: rgb(253, 251, 251);
+  }
+
+  .nav-bk3{
+    background: #00F260; 
+    background: -webkit-linear-gradient(to right, #0575E6, #00F260); 
+    background: linear-gradient(to right, #0575E6, #00F260);
+  }
+
+  .bg {
+  background-image: url("C:\Users\Milan\Desktop\Projects\Cinema\Front\public\cinemaImage.jpg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 100%;
+}
+
+.table123 {
+  background: linear-gradient(to right, #cce3fa, #c7fadb);
+}
+
+.custom-header{
+  background: linear-gradient(to right, #0575E6, #00F260);
+}
+
+.th1{
+  color: rgb(252, 249, 249);
+}
+
+.bg1 {
+  text-decoration-color: linear-gradient(to right, #0575E6, #00F260);
+}
