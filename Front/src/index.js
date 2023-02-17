@@ -24,7 +24,7 @@ class App extends React.Component {
       return (
         <>
           <Router>
-            <Navbar className='nav-bk3'>
+            <Navbar  className='nav-bk3' >
               <Navbar.Brand as={Link} to="/home">
                 {/* <img
               src="/logo.png"
@@ -35,7 +35,7 @@ class App extends React.Component {
             /> */}
                 <p3>Pocetna</p3>
               </Navbar.Brand>
-              <Nav>
+              <Nav variant="pills" defaultActiveKey={"/home"}>
                 <Nav.Link as={Link} to="/movies">
                   <p2>Filmovi</p2>
                 </Nav.Link>
@@ -87,7 +87,7 @@ class App extends React.Component {
               <Navbar.Brand as={Link} to="/">
                 Home
               </Navbar.Brand>
-              <Nav>
+              <Nav variant="pills" defaultActiveKey={"/home"}>
                 <Nav.Link as={Link} to="/movies">
                   Filmovi
                 </Nav.Link>

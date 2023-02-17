@@ -15,4 +15,6 @@ public interface TicketService {
 	Ticket update(Ticket ticket);
 	Ticket delete(Long id);
 	List<Ticket> findByProjectionId(Long projectionId);
+	Ticket findOneByProjectionId(Long projectionId);
+	Double sum (Double ticketPrice, Integer numOfTickets);
 }

@@ -56,7 +56,7 @@ class Registration extends React.Component {
                     <Form>
                         <Form.Group>
                             <Form.Label>Korisnicko ime: </Form.Label>
-                            <Form.Control type="text" name="username" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
+                            <Form.Control size="sm" type="text" name="username" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
                         </Form.Group>
                         {/* <Form.Group>
                         <Form.Label>Datum registracije: </Form.Label>
@@ -64,15 +64,15 @@ class Registration extends React.Component {
                     </Form.Group> */}
                         <Form.Group>
                             <Form.Label>Lozinka: </Form.Label>
-                            <Form.Control type="password" name="password" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
+                            <Form.Control size="sm" type="password" name="password" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Ponovljena lozinka: </Form.Label>
-                            <Form.Control type="password" name="repeatedPassword" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
+                            <Form.Control size="sm" type="password" name="repeatedPassword" onChange={(e) => this.valueInputChanged(e)}></Form.Control>
                         </Form.Group>
                         <br />
                     </Form>
-                    <Button onClick={(event) => { this.create(event); }}>Registracija</Button>
+                    <Button size="sm" variant="outline-primary" onClick={(event) => { this.create(event); }}>Registracija</Button>
                 </Col>
             </Row>
         )

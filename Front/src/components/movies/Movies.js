@@ -22,7 +22,7 @@ class Movies extends React.Component {
             countryOfOrigin: "",
             yearOfProductionFrom: 2010,
             yearOfProductionTo: 2024,
-            projectionId: 0
+            // projectionId: 0
         }
 
         this.state = {
@@ -48,10 +48,11 @@ class Movies extends React.Component {
                 genres: this.state.search.genres,
                 durationFrom: this.state.search.durationFrom,
                 durationTo: this.state.search.durationTo,
+                distributor: this.state.search.distributor,
                 countryOfOrigin: this.state.search.countryOfOrigin,
                 yearOfProductionFrom: this.state.search.yearOfProductionFrom,
                 yearOfProductionTo: this.state.search.yearOfProductionTo,
-                projectionId: this.state.search.projectionId,
+                // projectionId: this.state.search.projectionId,
                 pageNo: newPageNo
             }
         }
@@ -214,26 +215,6 @@ class Movies extends React.Component {
                                 </Form.Control>
                             </Form.Group>
                         </Col>
-                    </Row>
-
-                    <Row>
-                        <Col xs="auto">
-                            <Form.Group>
-                                <Form.Label>Projekcije</Form.Label>
-                                <Form.Select
-                                    defaultValue="Izaberite..."
-                                    size="sm"
-                                    name="projectionId"
-                                    onChange={(e) => this.onInputChange(e)}>
-                                    <option>Izaberite...</option>
-                                    {this.state.projections.map((projection) => {
-                                        return (
-                                            <option key={projection.id} value={projection.id}>{projection.dateTimeOfDisplay}</option>
-                                        );
-                                    })}
-                                </Form.Select>
-                            </Form.Group>
-                        </Col>
                         <Col xs="auto">
                             <Form.Group >
                                 <Form.Label>Godina proizvodnje od:</Form.Label>
@@ -259,10 +240,6 @@ class Movies extends React.Component {
                                     onChange={(e) => this.onInputChange(e)}>
                                 </Form.Control>
                             </Form.Group>
-                        </Col>
-                        <Col>
-                        </Col>
-                        <Col>
                         </Col>
                         <Col>
                             <br />

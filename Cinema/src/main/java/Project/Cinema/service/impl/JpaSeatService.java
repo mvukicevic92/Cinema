@@ -30,7 +30,7 @@ public class JpaSeatService implements SeatService{
 
 	@Override
 	public Page<Seat> findAll(Integer pageNo) {
-		return seatRepository.findAll(PageRequest.of(pageNo, 5));
+		return seatRepository.findAll(PageRequest.of(pageNo, 10));
 	}
 
 	@Override

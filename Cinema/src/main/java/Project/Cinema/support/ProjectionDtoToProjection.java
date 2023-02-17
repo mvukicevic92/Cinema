@@ -49,7 +49,7 @@ public class ProjectionDtoToProjection implements Converter<ProjectionDTO, Proje
 	}
 	
     private LocalDateTime getLocalDateTime(String dateTime) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); //ovde sam dodao HH:mm:ss
         return LocalDateTime.parse(dateTime, formatter);
     }
 

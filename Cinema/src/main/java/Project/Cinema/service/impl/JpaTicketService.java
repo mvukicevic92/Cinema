@@ -34,7 +34,7 @@ public class JpaTicketService implements TicketService{
 
 	@Override
 	public Page<Ticket> findAll(Integer pageNo) {
-		return ticketRepository.findAll(PageRequest.of(pageNo, 5));
+		return ticketRepository.findAll(PageRequest.of(pageNo, 10));
 	}
 
 	@Override
@@ -61,8 +61,19 @@ public class JpaTicketService implements TicketService{
 	}
 
 	@Override
+	public Ticket findOneByProjectionId(Long projectionId) {
+		return ticketRepository.findOneByProjectionId(projectionId);
+	}
+
+	@Override
 	public List<Ticket> findByProjectionId(Long projectionId) {
 		return ticketRepository.findByProjectionId(projectionId);
+	}
+
+	@Override
+	public Double sum(Double ticketPrice, Integer numOfTickets) {
+			Double sum = ticketPrice * numOfTickets;
+		return sum;
 	}
 
 }

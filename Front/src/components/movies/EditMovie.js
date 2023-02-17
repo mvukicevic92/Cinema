@@ -3,69 +3,59 @@ import Axios from "../../apis/Axios";
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { withNavigation, withParams } from '../../routeconf'
 
-class EditWine extends React.Component {
+class EditMovie extends React.Component {
 
     state = {
-        vinoId: -1,
-        name: "",
-        wineYear: 0,
-        wineDescription: "",
-        winePriceForBottle: 0,
-        wineAvailableBottles: 0,
-        wineWineryId: 0,
-        wineWineryName: "",
-        wineTypeId: 0,
-        wineTypeName: "",
-        wineries: [],
-        types: []
+        movieId: -1,
+        movieName: "",
+        movieDirector: "",
+        movieActors: "",
+        movieGenres: "",
+        movieDuration: 0,
+        movieDistributor: "",
+        movieCountryOfOrigin: "",
+        movieYearOfProduction: 0,
+        movieDescription: "",
+        movieProjectionId: 0,
+        movieProjectionName: "",
+        projections: []
     }
 
     componentDidMount() {
         var id = this.props.params.id
-        this.getWineries()
-        this.getTypes()
-        this.getWineById(id)
+        this.getProjections()
+        this.getMovieById(id)
     }
 
-    async getWineries() {
+    async getProjections() {
         try {
-            let result = await Axios.get("/wineries")
-            let wineries = result.data
-            this.setState({ wineries: wineries })
-            console.log("Loading wineries")
+            let result = await Axios.get("/projections")
+            let projections = result.data
+            this.setState({ projections: projections })
+            console.log("Loading projections")
         } catch (error) {
             console.log(error)
-            alert("Wineries can't be found")
+            alert("Projections can't be found")
         }
     }
 
-    async getTypes() {
-        try {
-            let result = await Axios.get("/types")
-            let types = result.data
-            this.setState({ types: types })
-            console.log("Loading types")
-        } catch (error) {
-            console.log(error)
-            alert("Types can't be found")
-        }
-    }
-
-    getWineById(wineId) {
-        Axios.get("/wines/" + wineId)
+    getMovieById(movieId) {
+        Axios.get("/movies/" + movieId)
             .then(res => {
                 console.log(res)
                 this.setState({
-                    wineId: res.data.id,
-                    wineName: res.data.name,
-                    wineYear: res.data.year,
-                    wineDescription: res.data.description,
-                    winePriceForBottle: res.data.priceForBottle,
-                    wineAvailableBottles: res.data.availableBottles,
-                    wineWineryId: res.data.wineryId,
-                    wineWineryName: res.data.wineryName,
-                    wineTypeId: res.data.typeId,
-                    wineTypeName: res.data.typeName
+                    movieId: res.data.id,
+                    movieName: res.data.name,
+                    movieDirector: res.data.director,
+                    movieActors: res.data.actors,
+                    movieGenres: res.data.genres,
+                    movieDuration: res.data.duration,
+                    movieDistributor: res.data.distributor,
+                    movieCountryOfOrigin: res.data.countryOfOrigin,
+                    movieYearOfProduction: res.data.yearOfProduction,
+                    movieDescription: res.data.description,
+                    movieProjectionId: res.data.projectionId,
+                    movieProjectionName: res.data.projectionName
                 })
             })
             .catch(error => {
@@ -73,24 +63,26 @@ class EditWine extends React.Component {
             })
     }
 
-    edit(wineId) {
+    edit(movieId) {
         var params = {
-            "id": this.state.wineId,
-            "name": this.state.wineName,
-            "year": this.state.wineYear,
-            "description": this.state.wineDescription,
-            "priceForBottle": this.state.winePriceForBottle,
-            "availableBottles": this.state.wineAvailableBottles,
-            "wineryId": this.state.wineWineryId,
-            "wineryName": this.state.wineWineryName,
-            "typeId": this.state.wineTypeId,
-            "typeName": this.state.wineTypeName
+            "id": this.state.movieId,
+            "name": this.state.movieName,
+            "director": this.state.movieDirector,
+            "actors": this.state.movieActors,
+            "genres": this.state.movieGenres,
+            "duration": this.state.movieDuration,
+            "distributor": this.state.movieDistributor,
+            "countryOfOrigin": this.state.movieCountryOfOrigin,
+            "yearOfProduction": this.state.movieYearOfProduction,
+            "description" : this.state.movieDescription,
+            "projectionId": this.state.movieProjectionId,
+            "projectionName": this.state.movieProjectionName
         }
 
-        Axios.put("/wines/" + this.state.wineId, params)
+        Axios.put("/movies/" + this.state.movieId, params)
             .then(res => {
                 console.log(res)
-                this.props.navigate("/wines")
+                this.props.navigate("/movies")
             })
             .catch(error => {
                 console.log(error)
@@ -99,43 +91,55 @@ class EditWine extends React.Component {
 
     onNameChange(e) {
         console.log(e.target.value)
-        this.setState({ wineName: e.target.value })
+        this.setState({ movieName: e.target.value })
     }
 
-    onYearChange(e) {
+    onDirectorChange(e) {
         console.log(e.target.value)
-        this.setState({ wineYear: e.target.value })
+        this.setState({ movieDirector: e.target.value })
+    }
+
+    onActorsChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieActors: e.target.value })
+    }
+
+    onGenresChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieGenres: e.target.value })
+    }
+
+    onDurationChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieDuration: e.target.value })
+    }
+
+    onDistributorChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieDistributor: e.target.value })
+    }
+
+    onCountryOfOriginChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieCountryOfOrigin: e.target.value })
+    }
+
+    onYearOfProductionChange(e) {
+        console.log(e.target.value)
+        this.setState({ movieYearOfProduction: e.target.value })
     }
 
     onDescriptionChange(e) {
         console.log(e.target.value)
-        this.setState({ wineDescription: e.target.value })
+        this.setState({ movieDescription: e.target.value })
     }
 
-    onPriceForBottleChange(e) {
-        console.log(e.target.value)
-        this.setState({ winePriceForBottle: e.target.value })
-    }
+    projectionSelectionChanged(e) {
+        let projectionId = e.target.value
+        let projection = this.state.projections.find((projection) => projection.id == projectionId)
 
-    onAvailableBottlesFlasa(e) {
-        console.log(e.target.value)
-        this.setState({ wineAvailableBottles: e.target.value })
-    }
-
-    winerySelectionChanged(e) {
-        let wineryId = e.target.value
-        let winery = this.state.wineries.find((winery) => winery.id == wineryId)
-
-        this.state.wineWineryId = winery.id
-        this.state.wineWineryName = winery.name
-    }
-
-    typeSelectionChanged(e) {
-        let typeId = e.target.value
-        let type = this.state.types.find((type) => type.id == typeId)
-
-        this.state.wineTypeId = type.id
-        this.state.wineTypeName = type.name
+        this.state.movieProjectionId = projection.id
+        this.state.movieProjectionName = projection.name
     }
 
     render() {
@@ -144,7 +148,7 @@ class EditWine extends React.Component {
                 <Row>
                     <Col></Col>
                     <Col xs="12" sm="10" md="8">
-                        <h1>Edit wine</h1>
+                        <h1>Edit movie</h1>
                         <Form>
                             <Form.Group>
                                 <Form.Label htmlFor="ime">Name</Form.Label>
@@ -152,54 +156,60 @@ class EditWine extends React.Component {
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label htmlFor="year">The year of production</Form.Label>
-                                <Form.Control id="year" name="year" type="number" value={this.state.wineYear} onChange={(e) => this.onYearChange(e)} /> <br />
+                                <Form.Label htmlFor="director">Director</Form.Label>
+                                <Form.Control id="director" name="director" type="text" value={this.state.movieDirector} onChange={(e) => this.onDirectorChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="actors">Actors</Form.Label>
+                                <Form.Control id="actors" name="actors" value={this.state.movieActors} onChange={(e) => this.onActorsChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="genres">Genres</Form.Label>
+                                <Form.Control id="genres" name="genres" type="text" value={this.state.movieGenres} onChange={(e) => this.onGenresChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="duration">Duration</Form.Label>
+                                <Form.Control id="duration" name="duration" type="number" value={this.state.movieDuration} onChange={(e) => this.onDurationChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="distributor">Distributor</Form.Label>
+                                <Form.Control id="distributor" name="distributor" type="text" value={this.state.movieDistributor} onChange={(e) => this.onDistributorChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="countryOfOrigin">Country of origin</Form.Label>
+                                <Form.Control id="countryOfOrigin" name="countryOfOrigin" value={this.state.movieCountryOfOrigin} onChange={(e) => this.onCountryOfOriginChange(e)} /> <br />
+                            </Form.Group>
+
+                            <Form.Group>
+                                <Form.Label htmlFor="yearOfProduction">Year of production</Form.Label>
+                                <Form.Control id="yearOfProduction" name="yearOfProduction" type="number" value={this.state.movieYearOfProduction} onChange={(e) => this.onYearOfProductionChange(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label htmlFor="description">Description</Form.Label>
-                                <Form.Control id="description" name="description" value={this.state.wineDescription} onChange={(e) => this.onDescriptionChange(e)} /> <br />
+                                <Form.Control id="description" name="description" type="text" value={this.state.movieDescription} onChange={(e) => this.onDescriptionChange(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
-                                <Form.Label htmlFor="priceForBottle">Price of bottle</Form.Label>
-                                <Form.Control id="priceForBottle" name="priceForBottle" type="number" value={this.state.winePriceForBottle} onChange={(e) => this.onPriceForBottleChange(e)} /> <br />
-                            </Form.Group>
-
-                            <Form.Group>
-                                <Form.Label htmlFor="availableBottles">Available bottles</Form.Label>
-                                <Form.Control id="availableBottles" name="availableBottles" type="number" value={this.state.wineAvailableBottles} onChange={(e) => this.onAvailableBottlesFlasa(e)} /> <br />
-                            </Form.Group>
-
-                            <Form.Group>
-                                <Form.Label htmlFor="wineryId">Winery</Form.Label>
-                                <Form.Control as="select" id="wineryId" onChange={event => this.winerySelectionChanged(event)}>
-                                    <option>{this.state.wineWineryName}</option>
+                                <Form.Label htmlFor="projectionId">Projection</Form.Label>
+                                <Form.Control as="select" id="projectionId" onChange={event => this.projectionSelectionChanged(event)}>
+                                    <option>{this.state.movieProjectionName}</option>
                                     {
-                                        this.state.wineries.map((winery) => {
+                                        this.state.projections.map((projection) => {
                                             return (
-                                                <option key={winery.id} value={winery.id}>{winery.name}</option>
+                                                <option key={projection.id} value={projection.id}>{projection.dateTimeOfDisplay}</option>
                                             )
                                         })
                                     }
                                 </Form.Control><br />
                             </Form.Group>
 
-                            <Form.Group>
-                                <Form.Label htmlFor="typeId">Type</Form.Label>
-                                <Form.Control as="select" id="typeId" onChange={event => this.typeSelectionChanged(event)}>
-                                    <option>{this.state.wineTypeName}</option>
-                                    {
-                                        this.state.types.map((type) => {
-                                            return (
-                                                <option key={type.id} value={type.id}>{type.name}</option>
-                                            )
-                                        })
-                                    }
-                                </Form.Control><br />
-                            </Form.Group>
-
-                            <Button onClick={() => this.edit(this.state.wineId)}>Edit</Button>
+                            <Button onClick={() => this.edit(this.state.movieId)}>Edit</Button>
                         </Form>
                     </Col>
                     <Col></Col>
@@ -212,4 +222,4 @@ class EditWine extends React.Component {
 
 }
 
-export default withParams(withNavigation(EditWine))
+export default withParams(withNavigation(EditMovie))

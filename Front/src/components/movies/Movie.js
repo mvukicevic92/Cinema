@@ -14,7 +14,7 @@ class Movie extends React.Component {
         this.totalPages = 0;
 
         this.state = {
-            movieId: -1,
+            movieId: 1,
             name: "",
             director: "",
             actors: "",
@@ -30,8 +30,8 @@ class Movie extends React.Component {
     }
 
     componentDidMount() {
-
-        this.getMovieById()
+        var id = this.props.params.id
+        this.getMovieById(id)
         this.getProjections()
     }
 
@@ -87,7 +87,7 @@ class Movie extends React.Component {
                     </thead>
                     <tbody>
 
-                        return (
+
                         <tr key={this.state.movieId}>
                             <td>{this.state.name}</td>
                             <td>{this.state.director}</td>
@@ -99,7 +99,7 @@ class Movie extends React.Component {
                             <td>{this.state.yearOfProduction}</td>
                             <td>{this.state.description}</td>
                         </tr>
-                        );
+
 
                     </tbody>
                 </Table>

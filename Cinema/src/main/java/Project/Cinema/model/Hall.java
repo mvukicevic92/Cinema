@@ -26,7 +26,7 @@ public class Hall {
 	@JoinColumn(name = "type_of_projection_id")
 	private Set<TypeOfProjection> typesOfProjections = new HashSet<>();
 	
-	@OneToMany(mappedBy = "hall")
+	@OneToMany
 	private Set<Projection> projections = new HashSet<>();
 
 	public Hall() {

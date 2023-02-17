@@ -40,6 +40,8 @@ INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_
 INSERT INTO projection (id, movie_id, type_of_projection_id, hall_id, date_time_of_display, ticket_price) VALUES (13, 4, 1, 3, "2023-02-05 21:30:00", 420.00);
 
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (1, 1, 1, "2023-02-01");
+INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (9, 1, 2, "2023-02-01");
+INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (10, 1, 3, "2023-02-01");
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (2, 3, 2, "2023-02-02");
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (3, 10, 4, "2023-02-04");
 INSERT INTO ticket (id, projection_id, seat_number, date_time_of_purchase) VALUES (4, 13, 3, "2023-02-05");

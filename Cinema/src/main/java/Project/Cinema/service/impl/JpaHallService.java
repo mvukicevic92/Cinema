@@ -30,7 +30,7 @@ public class JpaHallService implements HallService{
 
 	@Override
 	public Page<Hall> findAll(Integer pageNo) {
-		return hallRepository.findAll(PageRequest.of(pageNo, 5));
+		return hallRepository.findAll(PageRequest.of(pageNo, 10));
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package Project.Cinema.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,11 +23,10 @@ public class Projection {
 	private Movie movie;
 	
 	@ManyToOne
-//	@JoinColumn(name = "type_of_projection_id")
 	@PrimaryKeyJoinColumn
 	private TypeOfProjection typeOfProjection;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Hall hall;
 	
 	@Column(nullable = false)

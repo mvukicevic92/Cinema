@@ -71,25 +71,25 @@ class AddMovie extends React.Component {
                             <Form.Group>
                                 <Form.Label>Naziv filma: </Form.Label>
                                 <Form.Control
-                                    id="name" name="name" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="name" name="name" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Direktor: </Form.Label>
                                 <Form.Control
-                                    id="director" name="director" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="director" name="director" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Glumci: </Form.Label>
                                 <Form.Control
-                                    id="actors" name="actors" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="actors" name="actors" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Zanrovi: </Form.Label>
                                 <Form.Control
-                                    id="genres" name="genres" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="genres" name="genres" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
@@ -100,27 +100,27 @@ class AddMovie extends React.Component {
                             <Form.Group>
                                 <Form.Label>Distributer: </Form.Label>
                                 <Form.Control
-                                    id="distributor" name="distributor" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="distributor" name="distributor" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Zemlja porekla: </Form.Label>
                                 <Form.Control
-                                    id="countryOfOrigin" name="countryOfOrigin" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="countryOfOrigin" name="countryOfOrigin" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Godina proizvodnje: </Form.Label>
-                                <Form.Control type="number" id="yearOfProduction" name="yearOfProduction" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                <Form.Control size="sm" type="number" id="yearOfProduction" name="yearOfProduction" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
                             <Form.Group>
                                 <Form.Label>Opis: </Form.Label>
                                 <Form.Control
-                                    id="description" name="description" onChange={(e) => this.valueInputChanged(e)} /> <br />
+                                   size="sm" id="description" name="description" onChange={(e) => this.valueInputChanged(e)} /> <br />
                             </Form.Group>
 
-                            <Button onClick={(event) => { this.create(event); }}>Dodaj</Button>
+                            <Button size="sm" variant="outline-success" onClick={(event) => { this.create(event); }}>Dodaj</Button>
                         </Form>
                     </Col>
                     <Col></Col>

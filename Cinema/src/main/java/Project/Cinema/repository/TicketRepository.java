@@ -12,4 +12,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long>{
 	
 	Ticket findOneById(Long id);
 	List<Ticket> findByProjectionId(Long projectionId);
+	Ticket findOneByProjectionId(Long projectionId);
+	
 }

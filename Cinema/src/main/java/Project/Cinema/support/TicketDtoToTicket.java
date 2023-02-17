@@ -44,7 +44,7 @@ public class TicketDtoToTicket implements Converter<TicketDTO, Ticket>{
 	}
 	
     private LocalDateTime getLocalDateTime(String dateTime) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"); // dodao HH:mm:ss
         return LocalDateTime.parse(dateTime, formatter);
     }
 

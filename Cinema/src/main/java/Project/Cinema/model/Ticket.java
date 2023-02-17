@@ -3,6 +3,7 @@ package Project.Cinema.model;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,12 +24,10 @@ public class Ticket {
 	private Long id;
 	
 	@ManyToOne
-//	@JoinColumn(name = "projection_id")
-//	@PrimaryKeyJoinColumn
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Projection projection;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "seat_number", referencedColumnName = "serialNumber")
 	private Seat seat;
 	
@@ -43,6 +42,14 @@ public class Ticket {
 		super();
 		this.projection = projection;
 		this.seat = seat;
+		this.dateTimeOfPurchase = dateTimeOfPurchase;
+	}
+	
+	
+
+	public Ticket(Projection projection, LocalDateTime dateTimeOfPurchase) {
+		super();
+		this.projection = projection;
 		this.dateTimeOfPurchase = dateTimeOfPurchase;
 	}
 

@@ -20,7 +20,8 @@ class Projections extends React.Component {
             typeOfProjectionId: 0,
             hallId: 0,
             ticketPriceFrom: 0,
-            ticketPriceTo: 10000
+            ticketPriceTo: 10000,
+            
         }
 
         this.state = {
@@ -29,6 +30,7 @@ class Projections extends React.Component {
             halls: [],
             typesOfProjection: [],
             // projectionId: 0,
+            curTime : new Date().toLocaleString(),
             search: search,
             showing: false,
         }
@@ -216,9 +218,9 @@ class Projections extends React.Component {
                                 </Form.Select>
                             </Form.Group>
                         </Col>
-                    </Row>
+                    
 
-                    <Row>
+                    
                         <Col xs="auto">
                             <Form.Group >
                                 <Form.Label>Cena karte od:</Form.Label>
@@ -295,7 +297,8 @@ class Projections extends React.Component {
                                 return (
                                     <tr key={projection.id}>
                                         <Button variant="default" onClick={() => this.goToMovie(projection.movie.id)}>{projection.movie.name}</Button>
-                                        <td>{projection.dateTimeOfDisplay}</td>
+                                        {/* <td>{projection.dateTimeOfDisplay}</td> */}
+                                        <td>{this.state.curTime}</td>
                                         <td>{projection.typeOfProjection.name}</td>
                                         <td>{projection.ticketPrice}</td>
                                         <td>{projection.hall.name}</td>

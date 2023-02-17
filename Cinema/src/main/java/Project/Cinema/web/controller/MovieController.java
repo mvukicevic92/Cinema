@@ -6,9 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -58,8 +55,7 @@ public class MovieController {
 		try {
 			page = movieService.search(name, genres, durationFrom, durationTo, distributor, countryOfOrigin, yearOfProductionFrom, yearOfProductionTo, pageNo);
 		} catch (Exception e) {
-			Pageable pageable = PageRequest.of(pageNo, 5, Sort.by(name));
-			page = movieService.findAll(pageable);
+			page = movieService.findAll(pageNo);
 		}
 		
 		
@@ -107,14 +103,6 @@ public class MovieController {
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	}
-	
-	@PostMapping(value = "/{id}/buyTicket", produces = MediaType.APPLICATION_JSON_VALUE) // proveriti putanju
-	public ResponseEntity<MovieDTO> buyTicket(@PathVariable Long id){
-		
-		
-		
-		return null;
 	}
 	
 }

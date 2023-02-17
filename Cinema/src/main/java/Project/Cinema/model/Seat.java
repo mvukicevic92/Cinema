@@ -2,8 +2,9 @@ package Project.Cinema.model;
 
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -11,7 +12,8 @@ import javax.persistence.ManyToOne;
 public class Seat {
 	
 	@Id
-	@Column(unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(unique = true)
 	private Integer serialNumber;
 	
 	@ManyToOne
@@ -21,9 +23,8 @@ public class Seat {
 		super();
 	}
 
-	public Seat(Integer serialNumber, Hall hall) {
+	public Seat(Hall hall) {
 		super();
-		this.serialNumber = serialNumber;
 		this.hall = hall;
 	}
 

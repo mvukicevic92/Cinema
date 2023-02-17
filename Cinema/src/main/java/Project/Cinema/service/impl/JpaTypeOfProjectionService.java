@@ -30,7 +30,7 @@ public class JpaTypeOfProjectionService implements TypeOfProjectionService{
 
 	@Override
 	public Page<TypeOfProjection> findAll(Integer pageNo) {
-		return typeOfProjectionRepository.findAll(PageRequest.of(pageNo, 5));
+		return typeOfProjectionRepository.findAll(PageRequest.of(pageNo, 3));
 	}
 
 	@Override
